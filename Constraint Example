@@ -1,0 +1,26 @@
+// Code your testbench here
+// or browse Examples
+module sample();
+class a;  
+rand int a,b,c;
+          constraint c1{a<b<c;}
+          constraint c2 {a inside {[1:30]};
+						   b inside {[1:30]};
+							c inside {[1:30]};}
+         
+       
+      
+endclass
+initial 	
+	begin 
+      a a_h=new();
+      if(a_h.randomize())
+        $display("The following is randomized");
+ 	else
+      $display("The following is not randomized");
+
+
+      if(a_h.randomize() with {a>20;b<10;c>21;})
+        $display("The following is not randomized due to unsatisfyable constraints");
+    end
+endmodule
